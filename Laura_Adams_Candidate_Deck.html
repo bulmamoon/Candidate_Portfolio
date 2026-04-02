@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laura N. Adams — Candidate Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A1628;
+    --navy2: #0F1E38;
+    --electric: #2563EB;
+    --electric2: #3B82F6;
+    --cyan: #06B6D4;
+    --gold: #F59E0B;
+    --light: #F1F5F9;
+    --muted: #94A3B8;
+    --white: #FFFFFF;
+    --card: #131F35;
+    --card2: #1A2942;
+    --border: rgba(59,130,246,0.2);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: #060E1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-family: var(--font-body);
+  }
+
+  .deck-outer {
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .deck-wrap {
+    font-family: var(--font-body);
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(59,130,246,0.15);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    min-height: 560px;
+  }
+
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .accent-orb { position: absolute; border-radius: 50%; pointer-events: none; }
+  .orb1 { width: 340px; height: 340px; top: -100px; right: -80px; background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%); }
+  .orb2 { width: 220px; height: 220px; bottom: -50px; left: -50px; background: radial-gradient(circle, rgba(6,182,212,0.14) 0%, transparent 70%); }
+
+  .slide { display: none; padding: 36px 40px 32px; position: relative; z-index: 1; animation: fadeIn 0.35s ease; }
+  .slide.active { display: block; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px 0; position: relative; z-index: 2;
+  }
+
+  .nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .nav-tab {
+    font-family: var(--font-display);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); padding: 6px 14px; border-radius: 6px; cursor: pointer;
+    border: 1px solid transparent; background: transparent;
+    transition: all 0.2s;
+  }
+  .nav-tab:hover { color: var(--white); border-color: var(--border); }
+  .nav-tab.active { color: var(--white); background: rgba(37,99,235,0.25); border-color: var(--electric); }
+
+  .slide-counter {
+    font-family: var(--font-display); font-size: 11px;
+    color: var(--muted); letter-spacing: 0.05em; min-width: 48px; text-align: right;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--font-display); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 4px;
+    border: 1px solid var(--electric); color: var(--electric2); margin-bottom: 14px;
+  }
+
+  h1.hero-name {
+    font-family: var(--font-display); font-size: 54px; font-weight: 800;
+    color: var(--white); line-height: 1.0; margin-bottom: 6px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display); font-size: 18px; font-weight: 400;
+    color: var(--cyan); margin-bottom: 18px;
+  }
+
+  .hero-bio {
+    font-size: 14px; color: #CBD5E1; line-height: 1.7; max-width: 680px;
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+
+  .hero-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+  }
+
+  .hero-card-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+  }
+
+  .hero-card-val {
+    font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.4;
+  }
+
+  .contact-row { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  .contact-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+
+  .contact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--electric); flex-shrink: 0; }
+
+  .section-eyebrow {
+    font-family: var(--font-display); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--electric2); margin-bottom: 6px;
+  }
+
+  .section-heading {
+    font-family: var(--font-display); font-size: 28px; font-weight: 800;
+    color: var(--white); margin-bottom: 20px; line-height: 1.1;
+  }
+
+  .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+    transition: border-color 0.2s, transform 0.2s; cursor: default;
+  }
+  .skill-card:hover { border-color: var(--electric); transform: translateY(-2px); }
+
+  .skill-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(37,99,235,0.2); display: flex;
+    align-items: center; justify-content: center; margin-bottom: 10px;
+  }
+  .skill-icon svg { width: 16px; height: 16px; }
+
+  .skill-name {
+    font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    color: var(--white); margin-bottom: 6px;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+
+  .skill-pill {
+    font-size: 10px; color: var(--muted); background: rgba(255,255,255,0.05);
+    border-radius: 4px; padding: 2px 7px; border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .cert-row {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  }
+
+  .cert-badge {
+    background: rgba(37,99,235,0.25); color: var(--electric2);
+    font-family: var(--font-display); font-size: 10px; font-weight: 700;
+    padding: 4px 8px; border-radius: 4px; letter-spacing: 0.06em; white-space: nowrap;
+  }
+
+  .cert-name { font-size: 13px; font-weight: 500; color: var(--white); }
+  .cert-status { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .tl-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+
+  .tl-item { position: relative; margin-bottom: 22px; padding-left: 20px; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -24px; top: 6px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--electric); border: 2px solid var(--navy);
+    transition: background 0.2s;
+  }
+  .tl-item:hover::before { background: var(--cyan); }
+
+  .tl-date {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--electric2); margin-bottom: 2px;
+  }
+
+  .tl-title {
+    font-family: var(--font-display); font-size: 13px; font-weight: 700;
+    color: var(--white); margin-bottom: 2px;
+  }
+
+  .tl-company { font-size: 12px; color: var(--cyan); margin-bottom: 4px; }
+  .tl-desc { font-size: 12px; color: #94A3B8; line-height: 1.6; }
+
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+
+  .metric-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 16px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+
+  .metric-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, var(--electric), var(--cyan));
+  }
+
+  .metric-num {
+    font-family: var(--font-display); font-size: 34px; font-weight: 800;
+    color: var(--white); line-height: 1; margin-bottom: 6px;
+  }
+
+  .metric-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .metric-accent { color: var(--cyan); }
+
+  .win-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .win-item {
+    background: var(--card2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 16px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+
+  .win-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+  .win-text { font-size: 12px; color: #CBD5E1; line-height: 1.6; }
+  .win-text strong { color: var(--white); font-weight: 500; }
+
+  .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .value-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+  }
+
+  .value-num {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    color: var(--electric2); letter-spacing: 0.1em; margin-bottom: 8px;
+  }
+
+  .value-title {
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    color: var(--white); margin-bottom: 8px;
+  }
+
+  .value-desc { font-size: 12px; color: #94A3B8; line-height: 1.6; }
+
+  .cta-bar {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--electric); color: var(--white);
+    font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 12px 28px; border-radius: 6px; cursor: pointer;
+    border: none; transition: background 0.2s; text-decoration: none;
+    margin-top: 20px;
+  }
+  .cta-bar:hover { background: var(--electric2); }
+
+  .footer {
+    text-align: center; padding: 18px 0 4px;
+    font-size: 11px; color: rgba(148,163,184,0.45);
+    font-family: var(--font-display); letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 12px; }
+    .slide { padding: 24px 20px 24px; }
+    .nav-bar { padding: 14px 16px 0; }
+    h1.hero-name { font-size: 36px; }
+    .hero-grid, .skill-grid, .tl-two-col, .metrics-grid, .win-list, .value-grid { grid-template-columns: 1fr; }
+    .nav-tab { font-size: 10px; padding: 5px 9px; }
+  }
+</style>
+</head>
+<body>
+<div class="deck-outer">
+  <div class="deck-wrap">
+    <div class="grid-bg"></div>
+    <div class="accent-orb orb1"></div>
+    <div class="accent-orb orb2"></div>
+
+    <div class="nav-bar">
+      <div class="nav-tabs">
+        <button class="nav-tab active" onclick="goTo(0)">Intro</button>
+        <button class="nav-tab" onclick="goTo(1)">Skills</button>
+        <button class="nav-tab" onclick="goTo(2)">Career</button>
+        <button class="nav-tab" onclick="goTo(3)">Results</button>
+        <button class="nav-tab" onclick="goTo(4)">Value</button>
+      </div>
+      <div class="slide-counter" id="counter">1 / 5</div>
+    </div>
+
+    <!-- SLIDE 1: WHO I AM -->
+    <div class="slide active" id="slide-0">
+      <div class="tag">Candidate Profile</div>
+      <h1 class="hero-name">Laura N.<br>Adams</h1>
+      <div class="hero-title">IT &amp; Security Operations Professional</div>
+      <p class="hero-bio">10+ years supporting government and enterprise environments — from federal compliance to healthcare IT. CompTIA Security+ certified, pursuing a B.S. in Cybersecurity. I bridge the gap between technical operations and the humans who depend on them.</p>
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="hero-card-label">Location</div>
+          <div class="hero-card-val">Waldorf, MD &mdash; Remote Ready</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Certification</div>
+          <div class="hero-card-val">CompTIA Security+ &mdash; Active</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Education</div>
+          <div class="hero-card-val">B.S. Cybersecurity &amp; IA &mdash; WGU (2027)</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Focus Areas</div>
+          <div class="hero-card-val">IAM &middot; GRC &middot; Security Ops &middot; Support</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="contact-row">
+        <div class="contact-item"><div class="contact-dot"></div>latechie26@gmail.com</div>
+        <div class="contact-item"><div class="contact-dot"></div>202-666-8484</div>
+        <div class="contact-item"><div class="contact-dot"></div>Waldorf, MD</div>
+        <div class="contact-item"><div class="contact-dot"></div>linkedin.com/in/laura-n-adams-1865874b</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: SKILLS & CERTS -->
+    <div class="slide" id="slide-1">
+      <div class="section-eyebrow">Skills &amp; Certifications</div>
+      <div class="section-heading">What I Bring to the Table</div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#3B82F6" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+          </div>
+          <div class="skill-name">Identity &amp; Access Management</div>
+          <div class="skill-tags">
+            <span class="skill-pill">Azure AD / Entra</span>
+            <span class="skill-pill">User Provisioning</span>
+            <span class="skill-pill">RBAC</span>
+            <span class="skill-pill">Access Reviews</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#3B82F6" stroke-width="1.5"><path d="M8 1l6 3v4c0 3-2.5 5.5-6 7C2.5 13.5 2 11 2 8V4z"/></svg>
+          </div>
+          <div class="skill-name">Security &amp; Compliance</div>
+          <div class="skill-tags">
+            <span class="skill-pill">HIPAA</span>
+            <span class="skill-pill">SOC 2</span>
+            <span class="skill-pill">HITRUST</span>
+            <span class="skill-pill">Security+</span>
+            <span class="skill-pill">Audit Docs</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#3B82F6" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+          </div>
+          <div class="skill-name">IT Support Operations</div>
+          <div class="skill-tags">
+            <span class="skill-pill">ServiceNow</span>
+            <span class="skill-pill">Zendesk</span>
+            <span class="skill-pill">Salesforce</span>
+            <span class="skill-pill">Jira</span>
+            <span class="skill-pill">Tier 1/2</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#3B82F6" stroke-width="1.5"><rect x="2" y="3" width="12" height="9" rx="1"/><path d="M5 14h6M8 12v2"/></svg>
+          </div>
+          <div class="skill-name">Cloud &amp; Infrastructure</div>
+          <div class="skill-tags">
+            <span class="skill-pill">Microsoft Azure</span>
+            <span class="skill-pill">Microsoft 365</span>
+            <span class="skill-pill">Active Directory</span>
+            <span class="skill-pill">SharePoint</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#3B82F6" stroke-width="1.5"><path d="M4 6l4-4 4 4M4 10l4 4 4-4"/></svg>
+          </div>
+          <div class="skill-name">Scripting &amp; Automation</div>
+          <div class="skill-tags">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">PowerShell</span>
+            <span class="skill-pill">Bash</span>
+            <span class="skill-pill">Log Parsing</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#3B82F6" stroke-width="1.5"><path d="M2 4h12M2 8h9M2 12h6"/></svg>
+          </div>
+          <div class="skill-name">Docs &amp; Training</div>
+          <div class="skill-tags">
+            <span class="skill-pill">Knowledge Base</span>
+            <span class="skill-pill">QA Auditing</span>
+            <span class="skill-pill">Training Design</span>
+            <span class="skill-pill">Policy Writing</span>
+          </div>
+        </div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-badge">Active</div>
+        <div>
+          <div class="cert-name">CompTIA Security+ (SY0-601)</div>
+          <div class="cert-status">Foundational security certification covering risk management, threat intelligence, and compliance</div>
+        </div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-badge">In Progress</div>
+        <div>
+          <div class="cert-name">B.S. Cybersecurity &amp; Information Assurance &mdash; WGU</div>
+          <div class="cert-status">Expected March 2027 &middot; Coursework: Risk Management, Cloud Security, SDLC Security, Network Security</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: CAREER STORY -->
+    <div class="slide" id="slide-2">
+      <div class="section-eyebrow">Career Story</div>
+      <div class="section-heading">My Journey</div>
+      <div class="tl-two-col">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2024 – 2026</div>
+            <div class="tl-title">Help Desk Support Specialist</div>
+            <div class="tl-company">NDIP Consulting Inc.</div>
+            <div class="tl-desc">Tier 1/2 support for 500+ federal users. 98% CSAT. Raised FCR from 75% to 85% through knowledge base development and process improvements.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2021 – Present</div>
+            <div class="tl-title">Certifications &amp; Systems Admin</div>
+            <div class="tl-company">Ideal Electrical Supply Corp. (Contractor)</div>
+            <div class="tl-desc">IAM across 50+ government portals. Vendor security assessments, federal compliance documentation, and audit evidence collection.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2014 – 2015</div>
+            <div class="tl-title">Systems &amp; Training Support Specialist</div>
+            <div class="tl-company">FAA via JMA Solutions</div>
+            <div class="tl-desc">Training programs for 200+ FAA users. Improved adoption 40%. Reduced help desk volume 25% through documentation and knowledge resources.</div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2013 – 2016</div>
+            <div class="tl-title">PM Operations Coordinator</div>
+            <div class="tl-company">JMA Solutions, LLC</div>
+            <div class="tl-desc">Primary liaison for audit and compliance processes across multiple government contracts. 90% bid success rate through technical documentation.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2012 – 2013</div>
+            <div class="tl-title">Technical Support Specialist</div>
+            <div class="tl-company">LivingSocial</div>
+            <div class="tl-desc">95+ daily tickets via Salesforce CRM. Contributed to $7.5M revenue campaign. Consumer-facing technical and billing issue resolution.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Now</div>
+            <div class="tl-title">Next Chapter</div>
+            <div class="tl-company">Security Ops &middot; GRC &middot; Healthcare IT</div>
+            <div class="tl-desc">Targeting roles where operational excellence, security knowledge, and cross-functional collaboration drive real impact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: ACCOMPLISHMENTS -->
+    <div class="slide" id="slide-3">
+      <div class="section-eyebrow">Key Accomplishments</div>
+      <div class="section-heading">Results That Speak</div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-num">98<span class="metric-accent">%</span></div>
+          <div class="metric-label">Customer Satisfaction Rating at NDIP</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">85<span class="metric-accent">%</span></div>
+          <div class="metric-label">First-Contact Resolution Rate (up from 75%)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">40<span class="metric-accent">%</span></div>
+          <div class="metric-label">System Adoption Improvement at FAA</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">50<span class="metric-accent">+</span></div>
+          <div class="metric-label">Government Portals Under IAM Management</div>
+        </div>
+      </div>
+      <div class="win-list">
+        <div class="win-item">
+          <div class="win-dot"></div>
+          <div class="win-text"><strong>30% faster resolution</strong> — escalation documentation improvements reduced time-to-resolve across Tier 2/3 handoffs at NDIP</div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot"></div>
+          <div class="win-text"><strong>25% ticket reduction</strong> — training materials developed at FAA cut incoming help desk volume within months of deployment</div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot"></div>
+          <div class="win-text"><strong>Federal audit-ready</strong> — compliance documentation and evidence collection maintained across multiple concurrent government certification processes</div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot"></div>
+          <div class="win-text"><strong>$7.5M campaign support</strong> — high-volume consumer technical support contributed directly to LivingSocial revenue milestone</div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot"></div>
+          <div class="win-text"><strong>500+ daily users supported</strong> — managed Microsoft 365, Active Directory, and multi-platform IAM in a high-volume federal contractor environment</div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot"></div>
+          <div class="win-text"><strong>90% bid success rate</strong> — technical documentation and requirements gathering at JMA Solutions contributed to government contract wins</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: WHAT I BRING -->
+    <div class="slide" id="slide-4">
+      <div class="section-eyebrow">What I Bring to This Role</div>
+      <div class="section-heading">Your Priorities. My Experience.</div>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-num">01</div>
+          <div class="value-title">Operational Ownership</div>
+          <div class="value-desc">I don't wait for process to exist — I build it while executing. From vendor security intakes to audit documentation, I own operational functions end-to-end without losing accuracy or speed.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">02</div>
+          <div class="value-title">IAM &amp; Compliance Depth</div>
+          <div class="value-desc">10+ years managing access controls across government, healthcare-adjacent, and enterprise environments. I understand the stakes of getting provisioning, access reviews, and compliance evidence right.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">03</div>
+          <div class="value-title">Cross-Functional Fluency</div>
+          <div class="value-desc">I've worked alongside engineers, compliance auditors, government system owners, training teams, and executive stakeholders — translating technical findings into clear action at every level.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">04</div>
+          <div class="value-title">Documentation Rigor</div>
+          <div class="value-desc">Audit-ready documentation isn't a deliverable I rush — it's how I operate daily. Policies, knowledge bases, incident records, and compliance reports are consistently clear, current, and complete.</div>
+        </div>
+      </div>
+      <div style="text-align: center; padding-top: 16px;">
+        <a class="cta-bar" href="mailto:latechie26@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l6 5 6-5M2 4h12v9H2z"/></svg>
+          Get In Touch
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">Laura N. Adams &mdash; Candidate Deck &mdash; 2026</div>
+</div>
+
+<script>
+  let current = 0;
+  const total = 5;
+
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    document.querySelectorAll('.nav-tab')[current].classList.remove('active');
+    current = n;
+    document.getElementById('slide-' + current).classList.add('active');
+    document.querySelectorAll('.nav-tab')[current].classList.add('active');
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' && current < total - 1) goTo(current + 1);
+    if (e.key === 'ArrowLeft' && current > 0) goTo(current - 1);
+  });
+</script>
+</body>
+</html>
